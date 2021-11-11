@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.example.dynamicwidthheight.Data" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/collection_group_wrapper"
+        android:layout_width="@{data.width, default = match_parent}"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@{data.index == 1?@dimen/margin_sixteen_dp:@dimen/margin_zero_dp }"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="@{data.index > 1?@dimen/margin_sixteen_dp:@dimen/margin_12_dp }"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/collection_image"
+            android:layout_width="match_parent"
+            android:layout_height="@{data.imageHeight, default = wrap_content}"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/black"
+            tools:layout_height="150dp"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/collection_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="start"
+            android:letterSpacing="0.03"
+            android:paddingBottom="4dp"
+            android:text="@{data.title}"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/collection_image"
+            tools:text="Here's First Item"
+            tools:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/collection_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="10sp"
+            android:paddingBottom="16dp"
+            android:text="@{data.description}"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/collection_header"
+            app:layout_goneMarginTop="24dp"
+            tools:text="This is your item in theis list" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
